@@ -1,0 +1,234 @@
+/* --- Global Reset & Variables --- */
+:root {
+    --bg-main: #0f0f14; /* Deep dark background like Catapus */
+    --bg-secondary: #1a1a24;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0b8;
+    --accent-past: #4fd1c5; /* Retro teal for the past */
+    --accent-present: #6366f1; /* Modern indigo/blue for present */
+    --danger: #ff4757; /* For highlighting bad code */
+    --section-spacing: 100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+/* --- Typography & Utilities --- */
+h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px; color: var(--accent-present); }
+h3 { font-size: 1.5rem; margin-bottom: 15px; }
+p.lead { font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; margin-bottom: 40px; }
+p.story-text { font-size: 1.1rem; margin-bottom: 20px; color: var(--text-secondary); }
+.highlight-bad { color: var(--danger); text-decoration: line-through; }
+.caption { font-size: 0.9rem; color: var(--text-secondary); margin-top: 10px; font-style: italic; }
+
+/* --- Animation Classes (Used by JS) --- */
+/* Initial state: hidden and slightly down */
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+/* Final state: visible and in place */
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delays for staggered animations */
+.delay-200 { transition-delay: 0.2s; }
+
+
+/* --- Hero Section --- */
+.hero-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: var(--section-spacing) 0;
+    background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 40%);
+}
+
+.scroll-indicator {
+    margin-top: 50px;
+    font-weight: 600;
+    color: var(--accent-present);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* --- Chapter Styles --- */
+.chapter {
+    padding: var(--section-spacing) 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.chapter-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* --- Chapter 1: The Past (Specifics) --- */
+.past-chapter h2 { color: var(--accent-past); }
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin: 50px 0;
+}
+
+@media (min-width: 768px) {
+    .showcase-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.showcase-item img {
+    box-shadow: 0 10px 30px rgba(79, 209, 197, 0.2); /* Teal glow */
+    border: 2px solid rgba(79, 209, 197, 0.3);
+    transition: transform 0.3s ease;
+    max-height: 60vh; /* Limit height to fit screen */
+    width: auto;      /* Maintain aspect ratio */
+    margin: 0 auto;   /* Center the image */
+}
+
+.showcase-item img:hover { transform: scale(1.02); }
+
+/* Styling the messy code block */
+.code-highlight {
+    background: #1e1e2e;
+    padding: 30px;
+    border-radius: 12px;
+    margin-top: 50px;
+    border: 1px solid var(--danger);
+}
+
+pre {
+    background: #000;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    color: var(--danger); /* Red text to emphasize it's "bad" code */
+}
+
+/* --- Transition Section --- */
+.transition-section {
+    padding: 80px 0;
+    text-align: center;
+    background: var(--bg-secondary);
+}
+.transition-section h2 { color: var(--text-primary); }
+
+/* --- Chapter 2: The Present (Catapus) --- */
+.project-showcase {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 50px;
+    background: var(--bg-secondary);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+@media (min-width: 900px) {
+    .project-showcase { grid-template-columns: 1.5fr 1fr; }
+}
+
+.project-image img,
+.project-image video {
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3); /* Blue/Purple glow */
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    width: 100%;
+    border-radius: 12px;
+}
+
+.tech-stack {
+    font-weight: 700;
+    color: var(--accent-present);
+    margin-bottom: 20px;
+    display: inline-block;
+    background: rgba(99, 102, 241, 0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.features-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.features-list li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 30px;
+    background: var(--accent-present);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+.project-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+    background: #4f46e5;
+}
+
+/* --- Footer --- */
+.footer {
+    padding: 80px 0;
+    text-align: center;
+    background: black;
+    color: var(--text-secondary);
+}
+
+.signature {
+    margin-top: 20px;
+    font-weight: 700;
+    color: var(--accent-present);
+    font-size: 1.5rem;
+}
